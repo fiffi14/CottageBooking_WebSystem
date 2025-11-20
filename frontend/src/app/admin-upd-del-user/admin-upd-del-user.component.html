@@ -1,0 +1,86 @@
+<header>
+  <app-admin-menu></app-admin-menu>
+</header>
+<br>
+<body>
+
+  <h3 class="h_align">Ažuriraj podatke korisnika</h3>
+  <div>
+    <table>
+      <tr>
+        <td>
+          Unesite koricničko ime korisnika:
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="admin_user_search" [(ngModel)]="targetUser" placeholder="npr. pera123"  (blur)="userExists()">
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button (click)="obrisi()">OBRIŠI</button> || <button (click)="deaktiviraj()">DEAKTIVIRAJ</button> || <button (click)="aktiviraj()">AKTIVIRAJ</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+    <br>
+  <div>
+    <select name="cat_sel_adm" [(ngModel)]="category">
+      <option value="">- - - IZABERI KATEGORIJU - - -</option>
+      <option value="ime">IME</option>
+      <option value="prezime">PREZIME</option>
+      <option value="adresa">ADRESA</option>
+      <option value="telefon">KONTAKT TELEFON</option>
+      <option value="email">E-MAIL</option>
+      <option value="profilna">PROFILNA</option>
+      <option value="broj_kartice">BROJ PLATNE KARTICE</option>
+
+    </select>
+  </div>
+  <br>
+  @if(category!="profilna"){
+  <div>
+    <table>
+      <tr>
+        <td>
+          Unesite novu vrednost:
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="admin_upd_val" [(ngModel)]="value">
+
+        </td>
+        <td>
+          <button (click)="update()">POTVRDI</button>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  } @else{
+    <table>
+      <tr>
+        <td>PROFILNA SLIKA:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="file" name="admin_update_profilna" (change)="upload($event)">
+        </td>
+        <td>
+          <button (click)="update()">POTVRDI</button>
+
+        </td>
+      </tr>
+
+    </table>
+  }
+
+
+    <span class="error">{{err}}</span>
+</body>
+<footer>
+  <button (click)="logout()">Odjavi se</button>
+</footer>

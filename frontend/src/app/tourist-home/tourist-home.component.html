@@ -1,0 +1,142 @@
+<header>
+  <app-tourist-menu></app-tourist-menu>
+</header>
+<body>
+  <h3>Lični podaci</h3>
+
+  <div>
+    <table>
+      <tr>
+        <td colspan="2">
+          <img [src]="'http://localhost:4000/'+tourist.profilna">
+        </td>
+      </tr>
+
+      <tr>
+        <td class="username" colspan="2">
+          {{tourist.korisnicko_ime}}
+        </td>
+      </tr>
+      <br>
+      <tr>
+        <td>
+          IME
+        </td>
+        <td>
+          <input type="text" name="tourist_ime" [(ngModel)]="ime" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          PREZIME
+        </td>
+        <td>
+          <input type="text" name="tourist_prezime" [(ngModel)]="prezime" [disabled]="!updating">
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          POL
+        </td>
+        <td>
+          <input type="text" name="tourist_pol" [(ngModel)]="pol" disabled>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          ADRESA
+        </td>
+        <td>
+          <input type="text" name="tourist_adresa" [(ngModel)]="adresa" [disabled]="!updating">
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          E-MAIL ADRESA
+        </td>
+        <td>
+          <input type="text" name="tourist_email" [(ngModel)]="email" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          KONTAKT TELEFON
+        </td>
+        <td>
+          <input type="text" name="tourist_telefon" [(ngModel)]="telefon" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BROJ KARTICE
+        </td>
+        <td>
+          <input type="text" name="tourist_broj_kartice" [(ngModel)]="broj_kartice" [disabled]="!updating">
+        </td>
+      </tr>
+    </table>
+  </div>
+<div>
+  @if(!updating){
+    <button (click)="update_flag()">Ažuriraj</button>
+  }@else{
+
+    <div>
+    NOVA SLIKA <input type="file" name="owner_profile_profilna" (change)="upload($event)"><br>
+    <p>ILI<p>
+    <p>OBRIŠI PROFILNU </p><button (click)="back_to_def()" class="red">X</button>
+    </div>
+    <br>
+    <button (click)="update()" class="button-right">Sačuvaj</button>
+    <button (click)="give_up()">Odustani</button>
+  }
+  </div>
+  <span>{{err}}</span>
+
+</body>
+<footer>
+  <button (click)="passChange()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+
+</footer>
+  <!-- <hr>
+
+  @if(updating){
+    <div>
+      <select name="t_home_catg" [(ngModel)]="category" id="select_tourist" (ngModelChange)="decision()">
+        <option value="">- - - IZABERI KATEGORIJU - - -</option>
+        <option value="ime">IME</option>
+        <option value="prezime">PREZIME</option>
+        <option value="adresa">ADRESA</option>
+        <option value="telefon">KONTAKT TELEFON</option>
+        <option value="email">E-MAIL</option>
+        <option value="profilna">PROFILNA</option>
+        <option value="broj_kartice">BROJ PLATNE KARTICE</option>
+
+      </select>
+      @if(category=="profilna"){
+        <br>
+        <input type="file" name="tourist_profile_profilna" (change)="upload($event)">
+        <br>
+
+      } @else {
+        @if(category!=""){
+            <br>
+            <input type="text" name="update_tourist_value" [(ngModel)]="value">
+          <br>
+        }
+      }
+      <br>
+      <button (click)="update()">Sačuvaj</button> <button (click)="give_up()">Odustani</button>
+      <br>
+      <span>{{err}}</span>
+    </div>
+  } @else {
+    <div>
+    <button (click)="update_flag()">Ažuriraj podatke</button>
+  </div>
+  } -->
+

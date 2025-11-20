@@ -1,0 +1,250 @@
+
+footer button {
+  background: linear-gradient(135deg, #5b951a, #38893c);
+  border: none;
+  border-radius: 8px;
+  gap: 10px;
+  margin: 5px;
+  padding: 6px 36px;
+  white-space: nowrap;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+footer button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer th, footer tr{
+  border: none;
+}
+
+button {
+  background: linear-gradient(135deg, #B8860B, #A0750A);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #A0750A, #8B6914);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  gap: 0px;
+  flex-wrap: wrap;
+}
+
+/* Center the element itself horizontally */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+body {
+  background-color: #b7d1b7;
+  padding: 35px;
+  border: 3px solid darkgreen;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle; /* align with adjacent td content */
+  transform-origin: center center;
+  will-change: transform;
+}
+
+table td, table th {
+  vertical-align: middle; /* center content within table cells */
+}
+
+
+
+
+:host {
+  display: flex;
+  flex-direction: column; /* stack heading above the following div */
+  min-height: 100vh;
+
+  justify-content: center; /* center vertically */
+  align-items: center;     /* center children horizontally */
+  gap: 0.25rem; /* smaller gap between heading and content */
+  padding: 0.25rem 0.5rem; /* bring border closer to text */
+  font-size: large;
+
+  background: content-box radial-gradient( rgb(198, 243, 166) 35%, rgb(255, 255, 255) 75%);
+  background-attachment: fixed;
+
+}
+
+.form {
+  display: inline-flex;          /* size to content, but still participate in parent's centering */
+  flex-direction: column;
+  align-items: center;           /* center things inside the form (table, inputs, headings) */
+  border: 3px solid darkgreen;
+  border-radius: 12px; /* no sharp edges */
+  box-sizing: border-box;
+  padding: 35px;
+  /* background-color: rgb(171, 191, 104); */
+  /* enlarge the form while staying responsive */
+  width: min(370px, 95vw);
+  padding: 12px;
+  font-size: 1.05rem;
+  box-shadow: 2px 4px 8px gray;
+  background: linear-gradient(65deg, #ece1a5, #c1e196);
+  background-attachment: fixed;
+
+}
+
+/* Keep inputs a fixed size inside tables */
+table input[type="text"],
+table input[type="password"] {
+  padding: 10px;
+  border: 2px solid #8fbc8f;
+  border-radius: 5px;
+  background-color: #f5fffa;
+  color: #2f4f4f;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+select{
+  width: 75%;
+  padding: 10px;
+  border: 2px solid #8fbc8f;
+  border-radius: 5px;
+  background-color: #f5fffa;
+  color: #2f4f4f;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+
+.error {
+  display: block;           /* makes width constraints work predictably */
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 100%;         /* never grow beyond parent */
+  overflow-wrap: break-word;
+  font-weight: bold;
+  color: darkred;
+}
+
+
+
+.h_align {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Customize file input to match the app’s style */
+input[type="file"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 6px;
+  border: none;
+  color: #2f4f4f;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+input[type="file"]:focus-visible {
+  outline: 3px solid rgba(76, 175, 80, 0.35);
+  outline-offset: 2px;
+}
+
+/* Modern browsers */
+input[type="file"]::file-selector-button {
+  background: linear-gradient(135deg, #B8860B, #A0750A);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(135deg, #A0750A, #8B6914);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+input[type="file"]::file-selector-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* WebKit fallback */
+input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(135deg, #B8860B, #A0750A);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: linear-gradient(135deg, #A0750A, #8B6914);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+input[type="file"]::-webkit-file-upload-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Theme radio buttons to match the app */
+input[type="radio"] {
+  accent-color: #B8860B;         /* quick, native theming */
+  inline-size: 1rem;
+  block-size: 1rem;
+  cursor: pointer;
+}
+

@@ -1,0 +1,217 @@
+.red{
+  background: linear-gradient(90deg, #e18181 20%, #ff6969 80%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+
+}
+
+footer button {
+  background: linear-gradient(135deg, #5b951a, #38893c);
+  border: none;
+  border-radius: 8px;
+  gap: 10px;
+  margin: 5px;
+  padding: 6px 36px;
+  white-space: nowrap;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 150px;
+  height: 30px;
+}
+
+footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+footer button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer th, footer tr{
+  border: none;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button {
+  background: linear-gradient(135deg, #B8860B, #A0750A);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #A0750A, #8B6914);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+header table,
+header table td,
+header table th {
+  border: none;
+}
+table tr.greener{
+  background: #06ff51;
+  color: #000000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 800px;
+}
+
+table td, table th {
+  text-align: center;
+  padding: 12px;
+
+  border: 2px solid white;
+}
+
+table th {
+  background-color: #4a7c59;
+  font-weight: 600;
+  color: white;
+}
+
+table td {
+  background-color: #f0f8f0;
+}
+
+table tbody tr:nth-child(even) td {
+  background-color: #e8f5e8;
+}
+
+/* Center children inside a container */
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  gap: 0px;
+  flex-wrap: wrap;
+}
+
+/* Center the element itself horizontally */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.h_align {
+  text-align: left;
+  font-size: 18px;
+}
+
+/* Center and cursive paragraphs */
+
+
+/* Center headings and paragraphs */
+h1, h2, h3, h4, h5, h6, p {
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Beautified paragraphs */
+p {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  color: #2f4f4f;
+  background: rgba(240, 248, 240, 0.6);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border-left: 4px solid #5b951a;
+  border-right: 4px solid #5b951a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 16px auto;
+  max-width: 100px;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
+/* Beautified headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #2f5d40;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
+  margin: 12px 0 6px;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+
+h1, h2, h3 {
+  position: relative;
+}
+
+h1::after,
+h2::after{
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #5b951a, #38893c);
+}
+
+hr {
+  position: relative;
+  border: 0;
+  height: 4px;
+  margin: 24px auto;
+  width: min(90%, 800px);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #5b951a 20%, #38893c 80%, transparent);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+hr::before {
+  content: "";
+  position: absolute;
+  inset: -6px 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(91,149,26,0.25) 20%, rgba(56,137,60,0.25) 80%, transparent);
+  filter: blur(8px);
+  pointer-events: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+:host{
+  background: radial-gradient(circle at center, #f0fff0, #ffffff);
+  min-height: 100vh;
+  display: block;
+}

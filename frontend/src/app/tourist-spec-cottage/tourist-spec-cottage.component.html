@@ -1,0 +1,288 @@
+
+<header>
+  <button (click)="back()">Nazad</button>
+</header>
+<body>
+<h3>Vikendica: {{cottage.naziv}}</h3>
+<div>
+  <div class="image-box">
+    <img [src]="'http://localhost:4000/'+pics[ind]">
+  </div>
+  <table>
+    <!-- <tr>
+      <td colspan="2">
+
+      </td>
+    </tr> -->
+    <tr>
+      <td>
+        <button (click)="prevStep()"> Prethodna </button>
+      </td>
+      <td class="align-right">
+        <button (click)="nextStep()"> Sledeća </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<hr>
+<h4>Osnovni podaci</h4>
+<div>
+  <table class="custom-table">
+    <tr>
+      <td>MESTO:</td>
+      <td>{{cottage.mesto}}</td>
+    </tr>
+    <tr>
+      <td>USLUGE:</td>
+      <td>@if(cottage.usluge!=""){{{cottage.usluge}}} @else{-}</td>
+    </tr>
+    <tr>
+      <td>BROJ OSOBA:</td>
+      <td>{{cottage.broj_osoba}}</td>
+    </tr>
+    <tr>
+      <td>KVADRATURA:</td>
+      <td>{{cottage.kvadratura}} m^2</td>
+    </tr>
+    <tr>
+      <td>CENOVNIK U PERIODU MAJ-AVGUST:</td>
+        <td>
+          {{cottage.zimski_cenovnik}} RSD/noć
+        </td>
+    </tr>
+    <tr>
+      <td>CENOVNIK TOKOM OSTATKA GODINE:</td>
+        <td>
+          {{cottage.letnji_cenovnik}} RSD/noć
+        </td>
+
+    </tr>
+
+    <tr>
+      <td>VLASNIK/CA:</td>
+      <td>{{owner.ime}} {{owner.prezime}}</td>
+    </tr>
+    <tr>
+      <td>KONTAKT:</td>
+      <td>{{cottage.telefon}}</td>
+    </tr>
+  </table>
+</div>
+<br>
+<div>
+  <h4>Ocene i komentari</h4>
+  <table class="custom-table-left">
+    @if(cottage.lista_ocena.length>0){
+      @for(o of cottage.lista_ocena; track $index){
+      <div class="tr-bordered">
+      <tr>
+        <td>Korisnik:</td>
+        <td class="bold-td">{{o.korisnik}}</td>
+      </tr>
+
+      <tr>
+        <td>Ocena:</td>
+        <td>
+          <div class="star-rating">
+                @for (star of stars; track star; let i = $index) {
+                  <span
+                    class="symbol"
+                    [ngClass]="{
+                      'filled': i + 1 <= o.ocena,
+                      'third-quarter-filled': o.ocena > i && (o.ocena - i) >= 0.75 && (o.ocena - i) < 1,
+                      'half-filled': o.ocena > i && (o.ocena - i) >= 0.5 && (o.ocena - i) < 0.75,
+                      'quarter-filled': o.ocena > i && (o.ocena - i) >= 0.25 && (o.ocena - i) < 0.5,
+                      'empty': i >= o.ocena
+                    }">
+                    ★
+                  </span>
+
+                }
+
+              </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td >
+          {{o.ocena}}
+        </td>
+      </tr>
+      <tr>
+        <td>Period:</td>
+        <td class="cursive-td">{{month_toString(o.datum)}}</td>
+      </tr>
+      <br>
+      <tr>
+        <td>Komentar:</td>
+        <td class="cursive-td">{{o.komentar}}</td>
+      </tr>
+      </div>
+      <br><br>
+    }
+  }@else{
+    <p>Ne postoji nijedna recenzija trenutno.</p>
+  }
+  </table>
+</div>
+<h4>Lokacija</h4>
+<div>
+<iframe
+  width="300" height="300" frameborder="0" scrolling="no"
+  [src]="srcMap" alt="cottage.koordinate">
+</iframe>
+</div>
+
+<hr>
+<div>
+<h3>Rezervacija</h3>
+
+  <div [hidden]="rsvp_step!=0">
+    <table>
+
+
+      <tr>
+        <td>
+         Izaberi datum i vreme dolaska:
+        </td>
+
+        <td>
+
+          <input type="datetime-local" name="dolazak" min="{{today}}" [(ngModel)]="datumVremeOd" >
+          <!-- @if(isFirefox){
+            <input type="time" name="firefox_time" [(ngModel)]="firefox_time">
+          } -->
+        </td>
+        @if(isFirefox){<small>* Morate uneti ručno vreme.</small>}
+      </tr>
+      <tr>
+        <td>
+         Izaberi datum i vreme odlaska:
+        </td>
+        <td>
+          <input type="datetime-local" name="odlazak" min="{{datumVremeOd}}" [(ngModel)]="datumVremeDo">
+          <!-- @if(isFirefox){
+            <input type="time" name="firefox_time" [(ngModel)]="firefox_time">
+          } -->
+        </td>
+            @if(isFirefox){<small>* Morate uneti ručno vreme.</small>}
+      </tr>
+
+      <tr>
+        <td>
+         Broj odraslih:
+        </td>
+        <td>
+          <input type="number" name="br_odrasli" min="0" [(ngModel)]="odrasli" inputmode="numeric" pattern="^[0-9]+$">
+        </td>
+      </tr>
+      <tr>
+        <td>
+         Broj dece:
+        </td>
+        <td>
+          <input type="number" name="br_deca" min="0" [(ngModel)]="deca" inputmode="numeric" pattern="^[0-9]+$">
+        </td>
+      </tr>
+    </table>
+    <br>
+    <span class="error">{{err_step}}</span><br>
+    <button (click)="next_rsvp_step()">Dalje</button>
+
+  </div>
+  <div [hidden]="rsvp_step!=1">
+    <div>
+      <table class="custom-table">
+        <tr>
+          <td>
+            Vikendica:
+          </td>
+          <td>
+            {{cottage.naziv}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Korisnik:
+          </td>
+          <td>
+            {{tourist.ime}} {{tourist.prezime}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Početak rezervacije:
+          </td>
+          <td>
+            {{formatDate(datumVremeOd)}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Kraj rezervacije:
+          </td>
+          <td>
+            {{formatDate(datumVremeDo)}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Broj odraslih:
+          </td>
+          <td>
+            {{odrasli}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Broj dece:
+          </td>
+          <td>
+            {{deca}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <h4>Plaćanje</h4>
+      <div>
+        <table>
+          <tr>
+            <td>
+              Cena:
+            </td>
+            <td>
+              {{calculate_price()}} RSD
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Broj kartice:
+            </td>
+            <td>
+              <input type="text" name="kartica_placanje" [(ngModel)]="tourist.broj_kartice">
+            </td>
+          </tr>
+          <br>
+        </table>
+
+      </div>
+      <div>
+        <textarea name="dod_zahtevi" rows="5" cols="40" placeholder="Dodatni zahtevi (opciono)" maxlength="500" [(ngModel)]="dodatni_zahtevi"></textarea>
+      </div>
+      <br>
+    </div><span class="error">{{err_step2}}</span><br>
+    <button (click)="reserve()" class="button-right">Rezerviši</button>
+    <button (click)="odustani()">Odustani</button>
+
+  </div>
+
+
+</div>
+
+</body>
+<footer>
+  <button (click)="changePass()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+</footer>

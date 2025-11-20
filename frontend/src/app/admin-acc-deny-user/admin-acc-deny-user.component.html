@@ -1,0 +1,68 @@
+<header>
+  <app-admin-menu></app-admin-menu>
+</header>
+<body>
+  <br>
+<h2>Obradite zahteve za registraciju...</h2>
+<div>
+  <h3>...Vlasnika vikendica</h3>
+  @if(allOwners.length>0){
+    <table class="center-block">
+    <tr>
+      <th>Ime i prezime</th>
+      <th>Korisničko ime</th>
+      <th>E-mail</th>
+      <th>Kontakt telefon</th>
+      <th colspan="2">Opcije</th>
+    </tr>
+    @for(o of allOwners; track o.korisnicko_ime){
+      <tr>
+        <td>{{o.ime}} {{o.prezime}}</td>
+        <td>{{o.korisnicko_ime}}</td>
+        <td>{{o.email}}</td>
+        <td>{{o.telefon}}</td>
+        <td colspan="2">
+          <button (click)="accept(o.korisnicko_ime)">Prihvati</button> |
+          <button (click)="deny(o.korisnicko_ime)">Odbij</button>
+        </td>
+      </tr>
+    }
+  </table>
+  }@else{
+    <p>Ne postoje trenutno novi zahtevi vlasnika.</p>
+  }
+</div>
+<hr>
+<div>
+  <h3>...Turista</h3>
+  @if(allTourists.length>0){
+    <table>
+    <tr>
+      <th>Ime i prezime</th>
+      <th>Korisničko ime</th>
+      <th>E-mail</th>
+      <th>Kontakt telefon</th>
+      <th colspan="2">Opcije</th>
+    </tr>
+    @for(o of allTourists; track o.korisnicko_ime){
+      <tr>
+        <td>{{o.ime}} {{o.prezime}}</td>
+        <td>{{o.korisnicko_ime}}</td>
+        <td>{{o.email}}</td>
+        <td>{{o.telefon}}</td>
+        <td colspan="2">
+          <button (click)="accept(o.korisnicko_ime)">Prihvati</button> |
+          <button (click)="deny(o.korisnicko_ime)">Odbij</button>
+        </td>
+      </tr>
+    }
+  </table>
+  }@else{
+    <p>Ne postoje trenutno novi zahtevi turista.</p>
+  }
+</div>
+</body>
+<hr>
+<footer>
+  <button (click)="logout()">Odjavi se</button>
+</footer>

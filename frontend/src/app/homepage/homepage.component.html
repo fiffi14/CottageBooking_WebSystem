@@ -1,0 +1,124 @@
+
+<header>
+  <div>
+    <table>
+      <tr>
+
+        <td>
+          <button (click)="login()">PRIJAVI SE</button>
+        </td>
+        <td>
+          <img src="assets/favicon.ico" width="70" height="70">
+        </td>
+        <td>
+          <button (click)="register()" class="center">REGISTRUJ SE</button>
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+
+</header>
+
+
+
+<body>
+<div>
+  <h1>PLANINSKA VIKENDICA</h1>
+  <br>
+  <table>
+    <tr>
+      <th>UKUPAN BROJ VIKENDICA</th>
+      <th>BROJ REGISTROVANIH VLASNIKA</th>
+      <th>BROJ REGISTROVANIH TURISTA</th>
+    </tr>
+    <tr>
+      <td>
+        {{allCottages.length}}
+      </td>
+      <td>
+        {{allOwners.length}}
+      </td>
+      <td>
+        {{allTourists.length}}
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+<div>
+  <table>
+    <tr>
+      <th colspan="3">BROJ REZERVISANIH VIKENDICA U POSLEDNJIH...</th>
+
+    </tr>
+    <tr class="greener">
+      <td>24 ČASA</td>
+      <td>7 DANA</td>
+      <td>30 DANA</td>
+    </tr>
+    <tr>
+      <td>{{last24h()}}</td>
+      <td>{{last7days()}}</td>
+      <td>{{last30days()}}</td>
+    </tr>
+  </table>
+</div>
+<hr>
+<div>
+  <h3 class="center-items ">PREGLED SVIH VIKENDICA</h3>
+
+
+  <div class="center-items ">
+    <input type="text" name="home_name_parm" placeholder="Naziv" [(ngModel)]="parm_name">
+    <input type="text" name="home_place_parm" placeholder="Mesto" [(ngModel)]="parm_place">
+    <button (click)="search()">Pretraži</button>
+  </div>
+  <br>
+  <div class="center-items ">
+    <select name="sort_parm_sel" [(ngModel)]="sort_parm">
+      <option value="high_low">Opadajuće</option>
+      <option value="low_high">Rastuće</option>
+    </select>
+    <select name="sort_cat_sel" [(ngModel)]="sort_category">
+      <option value="name">Naziv</option>
+      <option value="place">Mesto</option>
+      <option value="persons">Broj osoba</option>
+      <option value="squares">Kvadratura</option>
+    </select>
+    <button (click)="sort_cottages()">Sortiraj</button>
+    <button (click)="reset_cottages()">Resetuj</button>
+  </div>
+  <div>
+    @if(srchCottages.length>0){
+      <table>
+      <tr>
+        <th>NAZIV</th>
+        <th>MESTO</th>
+        <th>BROJ OSOBA</th>
+        <th>KVADRATURA</th>
+      </tr>
+      @for(v of srchCottages; track v.id){
+        <tr>
+          <td>
+            {{v.naziv}}
+          </td>
+          <td>
+            {{v.mesto}}
+          </td>
+          <td>
+            {{v.broj_osoba}}
+          </td>
+          <td>
+            {{v.kvadratura}}
+          </td>
+        </tr>
+      }
+      </table>
+    } @else{
+      <p>Trenutno ovakve nemamo vikendice u ponudi.</p>
+    }
+    </div>
+</div>
+</body>

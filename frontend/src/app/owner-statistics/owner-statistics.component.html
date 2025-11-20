@@ -1,0 +1,32 @@
+
+<header>
+  <app-owner-menu></app-owner-menu>
+</header>
+
+<div class="charts-container">
+
+  <h2>Statistika rezervacija Vaših vikendica</h2>
+
+  <!-- Monthly Histogram -->
+  <div class="chart-card">
+    <h3>Rezervacije po mesecu</h3>
+    <div class="chart-wrapper">
+      <canvas #histogramCanvas></canvas>
+    </div>
+  </div>
+<br><br>
+  <!-- Weekday vs Weekend Pie Chart -->
+  <div class="chart-wrapper">
+    <h3>Odnos rezervacija tokom radne nedelje i vikenda</h3>
+    <canvas #pieCanvas></canvas>
+  </div>
+
+</div>
+<br><br><br><br>
+<footer>
+  <button (click)="passChange()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+
+</footer>
+
+

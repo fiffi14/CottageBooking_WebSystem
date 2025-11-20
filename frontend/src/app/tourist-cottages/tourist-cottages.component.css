@@ -1,0 +1,277 @@
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+}
+
+.symbol {
+  font-size: 24px;
+  color: #d3d3d3;
+  margin-right: 4px;
+
+}
+
+.symbol:last-child {
+  margin-right: 0;
+}
+
+.symbol.filled {
+  color: #ffbf00;
+}
+
+.symbol.half-filled {
+  background: linear-gradient(90deg, #ffbf00 50%, #d3d3d3 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.symbol.quarter-filled {
+  background: linear-gradient(90deg, #ffbf00 25%, #d3d3d3 25%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.symbol.third-quarter-filled {
+  background: linear-gradient(90deg, #ffbf00 67%, #d3d3d3 67%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.symbol.empty {
+  color: lightgray;
+}
+
+:host {
+  background: radial-gradient(circle at center, #baebba , #ffffff 75%);
+  min-height: 100vh;
+  display: block;
+}
+
+footer button {
+  background: linear-gradient(135deg, #5b951a, #38893c);
+  border: none;
+  border-radius: 8px;
+  gap: 10px;
+  margin: 5px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 150px;
+  height: 30px;
+}
+
+footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+footer button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer th, footer tr{
+  border: none;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button {
+  background: linear-gradient(135deg, #B8860B, #A0750A);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #A0750A, #8B6914);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+button {
+  padding: 8px 16px;
+  margin: 3px 0 10px 6px;
+}
+
+/* Keep header compact but add slight spacing between header buttons */
+header button {
+  margin: 4px 6px;
+}
+
+/* Light styling for inputs and selects with spacing */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+select {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 8px 10px;
+  margin: 6px 8px 10px 0;
+  color: #1f2937;
+  background-color: #fff;
+  border: 1px solid #c8d9c8;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"])::placeholder {
+  color: #95a59a;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):hover,
+select:hover {
+  border-color: #a7bea9;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):focus,
+select:focus {
+  border-color: #4a7c59;
+  box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.15);
+}
+
+input:disabled,
+select:disabled {
+  background-color: #f0f5f0;
+  color: #7a8a7a;
+  cursor: not-allowed;
+}
+
+a {
+  color: #395943;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #3b6348;
+}
+
+
+.custom-table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 65%;
+  max-width: 800px;
+
+
+}
+
+.custom-table td, .custom-table th {
+  text-align: center;
+  padding: 9px;
+  border: 2px solid white;
+}
+
+.custom-table th {
+  background-color: #4a7c59;
+  font-weight: 600;
+  color: white;
+}
+
+.custom-table td {
+  background-color: #f0f8f0;
+  text-align: center;
+}
+
+.custom-table .custom-align {
+  margin: 20px 0 20px 25%;
+  transform: translateX(-50px);
+  text-align: center;
+}
+
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.h_align {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+/* Tooltip container *//* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;   /* was contents */
+  cursor: default;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: #ddf4c0;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  border: 2px solid black;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  pointer-events: auto;     /* keep link clickable */
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Show tooltip on hover (and keep when hovering bubble) */
+.tooltip:hover .tooltiptext,
+.tooltip .tooltiptext:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+p {
+  color: #2f4f4f;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 16px 0;
+  text-align: center;
+  font-weight: bold;
+}

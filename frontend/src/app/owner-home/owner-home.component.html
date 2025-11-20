@@ -1,0 +1,100 @@
+<header>
+  <app-owner-menu></app-owner-menu>
+</header>
+<body>
+  <h3>Lični podaci</h3>
+
+  <div>
+    <table>
+      <tr>
+        <td colspan="2">
+          <img [src]="'http://localhost:4000/'+owner.profilna">
+        </td>
+      </tr>
+
+      <tr>
+        <td class="username" colspan="2">
+          {{owner.korisnicko_ime}}
+        </td>
+      </tr>
+      <br>
+      <tr>
+        <td>
+          IME
+        </td>
+        <td>
+           <input type="text" name="owner_ime" [(ngModel)]="ime" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          PREZIME
+        </td>
+        <td>
+           <input type="text" name="owner_prezime" [(ngModel)]="prezime" [disabled]="!updating">
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          POL
+        </td>
+        <td>
+           <input type="text" name="owner_pol" [(ngModel)]="pol" disabled>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          ADRESA
+        </td>
+        <td>
+           <input type="text" name="owner_adresa" [(ngModel)]="adresa" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          E-MAIL ADRESA
+        </td>
+        <td>
+           <input type="text" name="owner_email" [(ngModel)]="email" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          KONTAKT TELEFON
+        </td>
+        <td>
+           <input type="text" name="owner_telefon" [(ngModel)]="telefon" [disabled]="!updating">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          BROJ KARTICE
+        </td>
+        <td>
+           <input type="text" name="owner_broj_kartice" [(ngModel)]="broj_kartice" [disabled]="!updating">
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+  @if(!updating){
+    <button (click)="update_flag()">Ažuriraj</button>
+  }@else{
+    <br>
+    <div>
+    NOVA SLIKA <input type="file" name="owner_profile_profilna" (change)="upload($event)"><br>
+    <p>ILI<p>
+    <p>OBRIŠI PROFILNU </p> <button (click)="back_to_def()" class="red">X</button>
+    </div>
+    <br>
+    <button (click)="update()" class="button-right">Sačuvaj</button>
+    <button (click)="give_up()">Odustani</button>
+  }
+  </div>
+  <span>{{err}}</span>
+</body>
+<footer>
+  <button (click)="chPass()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+</footer>

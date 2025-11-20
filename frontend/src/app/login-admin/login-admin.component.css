@@ -1,0 +1,108 @@
+/* keep headings above, center main content */
+:host {
+  display: flex;
+  flex-direction: column; /* stack heading above the following div */
+  min-height: 100vh;
+  justify-content: center; /* center vertically */
+  align-items: center;     /* center children horizontally */
+  gap: 0.25rem; /* smaller gap between heading and content */
+  padding: 0.25rem 0.5rem; /* bring border closer to text */
+  font-size: large;
+  /* background: linear-gradient(65deg, #ffffff, #375e00); */
+  background: content-box radial-gradient( rgb(217, 243, 166) 35%, rgb(255, 255, 255) 75%);
+  background-attachment: fixed;
+
+}
+
+
+
+.form {
+  display: inline-flex;          /* size to content, but still participate in parent's centering */
+  flex-direction: column;
+  align-items: center;           /* center things inside the form (table, inputs, headings) */
+  border: 3px solid darkgreen;
+  border-radius: 12px; /* no sharp edges */
+  box-sizing: border-box;
+  padding: 35px;
+  background-color: rgb(171, 191, 104);
+  max-width: 90vw;       /* prevent overflowing the viewport */
+
+  box-shadow: 2px 4px 8px gray;
+}
+
+.back{
+  background-color: #cddbd4;
+}
+
+.h_align {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}         /* never grow beyond parent */
+
+
+
+/* allow span text to wrap without enlarging the form horizontally */
+span {
+  display: block;           /* makes width constraints work predictably */
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 100%;         /* never grow beyond parent */
+  overflow-wrap: break-word;
+  font-weight: bold;
+  color: darkred;
+}
+
+button{
+  cursor: pointer;
+  background-color: rgb(215, 173, 117);
+  transition: background-color 0.3s;
+  padding: 3px;
+  border-radius: 6px;
+  border-radius: 5px;
+  margin-top: 12px;
+}
+
+button:hover{
+  background-color: rgb(201, 137, 52);
+  color: rgb(230, 237, 224);
+}
+
+
+input[type="text"], input[type="password"] {
+  padding: 8px;
+  border: 2px solid #546e54;
+  border-radius: 5px;
+  background-color: #cddbd4;
+  color: #23291a;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #546e54;
+  background-color: rgb(252, 252, 252);
+  outline: none;
+}
+
+a {
+  display: inline-block;
+  text-align: right;
+  font-size: 15px;
+  color: #2f4f4f;
+
+}
+
+.a_tmp {
+  margin-top: 5px;
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+  color: #2f4f4f;
+}
+
+a::after{
+  color: #2f4f4f;
+}

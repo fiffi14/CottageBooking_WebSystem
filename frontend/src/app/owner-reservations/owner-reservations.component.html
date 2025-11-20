@@ -1,0 +1,106 @@
+<header>
+  <app-owner-menu></app-owner-menu>
+</header>
+<body>
+  <h4>Neobrađeni zahtevi za rezervacije</h4>
+  @if(res_neobradjen.length>0){
+  <div>
+
+    <table class="custom-table">
+      <tr>
+        <th>Vikendica</th>
+        <th>Turista</th>
+        <th>Početak rezervacije</th>
+        <th>Kraj rezervacije</th>
+        <th>Cena</th>
+        <th colspan="2">Opcija</th>
+      </tr>
+      @for(r of res_neobradjen; track r.id){
+        <tr>
+          <td>
+            {{r.cottName}}
+          </td>
+          <td>
+            {{ret_user(r.turista)}}
+          </td>
+          <td>
+            {{formatDate(r.datum_od)}}
+          </td>
+          <td>
+            {{formatDate(r.datum_do)}}
+          </td>
+          <td>
+            {{r.cena}}
+          </td>
+          <td>
+            <button (click)="accept(r)">Prihvati</button>
+          </td>
+          <td>
+            <button (click)="deny(r)">Odbij</button>
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+
+  <div [hidden]="step==0">
+    <br>
+    <textarea placeholder="Komentar na rezervaciju" name="comm_owner" maxlength="500" [(ngModel)]="comment" rows="7" cols="30"></textarea><br>
+    <span class="error">{{err}}</span>
+    <div class="button-container">
+      <button (click)="confirm()">Potvrdi</button>
+      <button (click)="giveup()">Odustani</button>
+    </div>
+  </div>
+  }@else{
+    <p>Trenutno ne postoji nijedan neobrađen zahtev.</p>
+  }
+  <hr>
+  <h4>Obrađeni zahtevi za rezervacije</h4>
+  @if(res_acc_den.length>0){
+  <div>
+
+    <table class="custom-table">
+      <tr>
+        <th>Vikendica</th>
+        <th>Turista</th>
+        <th>Početak rezervacije</th>
+        <th>Kraj rezervacije</th>
+        <th>Cena</th>
+        <th>Status</th>
+      </tr>
+      @for(r of res_acc_den; track r.id){
+        <tr>
+          <td>
+            {{r.cottName}}
+          </td>
+          <td>
+            {{ret_user(r.turista)}}
+          </td>
+          <td>
+            {{formatDate(r.datum_od)}}
+          </td>
+          <td>
+            {{formatDate(r.datum_do)}}
+          </td>
+          <td>
+            {{r.cena}}
+          </td>
+          <td [class.acc]="r.status=='prihvacena'" [class.deny]="r.status=='odbijena'">
+            @if(r.status=='prihvacena'){Prihvaćena} @else{Odbijena}
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+
+  }@else{
+    <p>Trenutno ne postoji nijedan obrađen zahtev.</p>
+  }
+</body>
+<footer>
+  <button (click)="passChange()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+
+</footer>
+

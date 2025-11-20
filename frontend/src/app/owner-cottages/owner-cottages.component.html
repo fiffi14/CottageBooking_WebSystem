@@ -1,0 +1,298 @@
+<header>
+  <app-owner-menu></app-owner-menu>
+
+</header>
+
+<body class="container">
+<p (click)="scrollTo('adding')" class="scroll-link">KLIK DA DODATE NOVU VIKENDICU!</p>
+<h3>Prijavljene vikendice</h3>
+
+@if(myCottages.length>0){
+  @for(c of myCottages; track c.id){
+  <div class="beautify-text">Slika {{ind.get(c.id)}}</div>
+  <div>
+
+      <div class="image-box">
+        <img [src]="'http://localhost:4000/'+c.galerija[ind.get(c.id)!]">
+      </div>
+
+      <table class="center-block">
+        <!-- <tr>
+          <td colspan="2" class="td-center">
+            </td>
+        </tr> -->
+        <!-- <tr>
+          <td colspan="2" class="td-center">
+            </td>
+        </tr> -->
+        <tr>
+          <td>
+            <button (click)="prevStep(c)"> Prethodni </button>
+          </td>
+          <td class="td-right">
+            <button (click)="nextStep(c)"> Sledeći </button>
+          </td>
+
+        </tr>
+      </table>
+    <div>
+      <table class="custom-table">
+        <tr>
+          <td>NAZIV:</td>
+          <td>{{c.naziv}}</td>
+        </tr>
+        <tr>
+          <td>MESTO:</td>
+          <td>{{c.mesto}}</td>
+        </tr>
+
+        <tr>
+          <td>USLUGE:</td>
+          <td>{{c.usluge}}</td>
+        </tr>
+        <tr>
+          <td>BROJ OSOBA:</td>
+          <td>{{c.broj_osoba}}</td>
+        </tr>
+        <tr>
+          <td>KVADRATURA:</td>
+          <td>{{c.kvadratura}} m^2</td>
+        </tr>
+        <tr>
+          <td>ZIMSKI CENOVNIK:</td>
+          <td>
+            {{c.zimski_cenovnik}} RSD/noć
+          </td>
+        </tr>
+        <tr>
+          <td>LETNJI CENOVNIK:</td>
+          <td>
+            {{c.letnji_cenovnik}} RSD/noć
+          </td>
+        </tr>
+        <tr>
+          <td>KONTAKT:</td>
+          <td>{{c.telefon}}</td>
+        </tr>
+        <tr>
+          <td>BLOKADA DO:</td>
+          <td>@if(c.blokiranaDo!=""){{{c.blokiranaDo}}} @else{-}</td>
+        </tr>
+        <!-- <tr>
+          <td>KOORDINATE:</td>
+          <td>{{c.koordinate}}</td>
+        </tr> -->
+
+      </table>
+    </div>
+      <table class="center-block">
+
+        <br>
+        <div >
+
+          <tr [hidden]="updating!=true">
+            <td colspan="2" class="center-items">
+                <div>
+                  <select name="o_home_catg" [(ngModel)]="category" (ngModelChange)="decision()">
+                    <option value="">- - - IZABERI KATEGORIJU - - -</option>
+                    <option value="naziv">NAZIV</option>
+                    <option value="mesto">MESTO</option>
+                    <option value="usluge">USLUGE</option>
+                    <option value="telefon">KONTAKT TELEFON</option>
+                    <option value="broj_osoba">BROJ OSOBA</option>
+                    <option value="kvadratura">KVADRATURA</option>
+                    <option value="letnji">LETNJI CENOVNIK</option>
+                    <option value="zimski">ZIMSKI CENOVNIK</option>
+                    <option value="koordinate">KOORDINATE</option>
+                    <option value="galerija">DODAJ/OBRIŠI SLIKU</option>
+
+                  </select>
+                  <br><br>
+                  @if(category=="galerija"){
+
+                      <input type="file" name="owner_gallery" (change)="upload($event)" placeholder="Dodaj sliku">
+                      <br><br>
+                      <div>
+                        <button (click)="obrisi_sliku(c.id)">Obriši sliku</button>
+                        <select name="del_gall" [(ngModel)]="pic_to_delete">
+                          <option value="">-- IZABERITE SLIKU ZA BRISANJE --</option>
+                          @for(p of c.galerija; track $index){
+                            <option value="{{p}}">
+                              slika {{$index}}
+                            </option>
+                          }
+                        </select>
+
+                      </div>
+
+                  } @else {
+                      @if(category=="usluge"){
+                        <textarea name="txt_owner_upd" maxlength="500" cols="44" rows="5" [(ngModel)]="value"></textarea><br>
+                      }
+                      @else{
+                        @if(category!=""){
+                          <p>Nova vrednost:</p> <input type="text" name="update_cottage_owner" [(ngModel)]="value"><br>
+                        }
+                      }
+                    }
+                  <span class="error">{{err}}</span><br>
+                  <button (click)="save()">Sačuvaj</button>
+                  <button (click)="giveup()">Odustani</button>
+                </div>
+            </td>
+          </tr>
+          <tr class="td-center">
+            <td colspan="2" [hidden]="updating==true">
+              <button (click)="start_update(c)">Uredi</button>
+              <button (click)="delete1()" [hidden]="ask_delete==true">Obriši</button>
+              <button (click)="giveup2()" [hidden]="ask_delete!=true">Odustani</button>
+              <br>
+
+              <label [hidden]="ask_delete!=true">Da li sigurno hoćete da obrišete vikendicu?</label>
+              <input type="checkbox" name="check_deleting" [hidden]="ask_delete!=true" (click)="delete2(c)">
+            </td>
+          </tr>
+        </div>
+      </table>
+
+  </div>
+    <hr>
+  }
+
+}@else{
+  <p>Nemate nijednu prijavljenu vikendicu.</p>
+}
+<br>
+
+<div id="adding">
+<h3>Forma za registrovanje nove vikendice</h3>
+<div>
+  <table>
+    <tr>
+      <td>Naziv:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="naziv_cott_owner" [(ngModel)]="n_naziv">
+      </td>
+    </tr>
+    <tr>
+      <td>Mesto:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="naziv_cott_owner" [(ngModel)]="n_mesto">
+      </td>
+    </tr>
+    <tr>
+      <td>Usluge vikendice:</td>
+    </tr>
+    <tr>
+      <td>
+        <textarea name="usluge_cott_owner" rows="4" cols="33" maxlength="500" [(ngModel)]="n_usluge"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>Broj osoba:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="number" name="broj_osoba_cott_owner" inputmode="numeric" pattern="^[0-9]+$" min="0" [(ngModel)]="n_broj_osoba">
+      </td>
+    </tr>
+    <tr>
+      <td>Kvadratura:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="number" name="kv_cott_owner" inputmode="numeric" pattern="^[0-9]+$" min="0"  [(ngModel)]="n_kvadratura">
+      </td>
+    </tr>
+    <tr>
+      <td>Letnji cenovnik<small> (maj-avgust):</small></td>
+    </tr>
+    <tr>
+      <td>
+        <input type="number" name="letnji_cott_owner" inputmode="numeric" pattern="^[0-9]+$" min="0"  [(ngModel)]="n_letnji">
+      </td>
+    </tr>
+    <tr>
+      <td>Zimski cenovnik:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="number" name="zimski_cott_owner" inputmode="numeric" pattern="^[0-9]+$" min="0"  [(ngModel)]="n_zimski">
+      </td>
+    </tr>
+    <tr>
+      <td>Kontakt telefon:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="tel_cott_owner"  [(ngModel)]="n_telefon" placeholder="+381/+49...">
+      </td>
+    </tr>
+    <tr>
+      <td>Koordinate na mapi:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="tel_cott_owner" [(ngModel)]="n_koord" placeholder="npr. 45.123, 22.784">
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>Dodajte slike u galeriju:</td>
+    </tr>
+    <tr>
+      <td>
+        <input type="file" multiple (change)="upload_multiple($event)">
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <span class="error">{{err_reg}}</span><br>
+        <button (click)="register()">Potvrdi</button>
+
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+</body>
+
+<footer>
+  <button (click)="chPass()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+</footer>
+
+
+
+<!-- <input type="file"  name="tourist_profile_profilna" (change)="upload($event)">
+<br><br>
+<button (click)="update()">Potvrdi</button>
+{{err}}
+<br>
+
+@for(pic of pics; track $index){
+  <img [src]="'http://localhost:4000/'+pic">
+  {{pic}}
+} -->
+
+<!-- <img [src]="'http://localhost:4000/'+pics[ind]">
+<button (click)="nextStep()">>>></button>
+
+<div>
+  <select [(ngModel)]="selected">
+    <option value="">JO</option>
+    @for(pic of pics; track $index){
+      <option value="{{pic}}">{{pic}}</option>
+    }
+    <hr>
+  </select>
+  {{selected}}
+  <br>
+  <img [src]="'http://localhost:4000/'+selected">
+  <button (click)="delete()">Obrisi</button>
+</div> -->

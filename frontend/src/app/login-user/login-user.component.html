@@ -1,0 +1,50 @@
+<body>
+
+<div class="form" id="forma">
+<h2>PRIJAVI SE</h2>
+
+<div>
+<table>
+  <tr>
+    <td>KORISNIČKO IME:</td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" name="user_in_log" [(ngModel)]="user">
+    </td>
+  </tr>
+  <br>
+  <tr>
+    <td>LOZINKA:</td>
+  </tr>
+  <tr>
+    <td>
+      <input type="password" name="user_in_pass" [(ngModel)]="pass">
+    </td>
+  </tr>
+  <tr>
+
+    <td class="h_align">
+      <button (click)="login()">PRIJAVA</button>
+    </td>
+  </tr>
+  </table>
+  <span class="a_tmp">
+    Nemate nalog? <a routerLink="../registration">Registruj se</a>
+    <br>
+    <a routerLink="../">Početna</a>
+  </span>
+  <!-- <span class="a_tmp">
+    <a routerLink="../registration">Registruj se</a>
+  </span> -->
+</div>
+
+<div class="h_align">
+  <span>{{msg}}</span>
+</div>
+
+</div>
+
+
+
+</body>

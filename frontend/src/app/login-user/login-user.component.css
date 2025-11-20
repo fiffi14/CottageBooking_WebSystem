@@ -1,0 +1,107 @@
+/* keep headings above, center main content */
+
+
+:host {
+  position: fixed;       /* cover screen regardless of body margin */
+  inset: 0;              /* top:0; right:0; bottom:0; left:0 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: large;
+
+  background: linear-gradient(135deg, #afd37d, #e9c600);
+  background-attachment: fixed;
+}
+
+.form {
+  display: inline-flex;          /* size to content, but still participate in parent's centering */
+  flex-direction: column;
+  align-items: center;           /* center things inside the form (table, inputs, headings) */
+  border: 3px solid darkgreen;
+  border-radius: 12px; /* no sharp edges */
+  box-sizing: border-box;
+  padding: 35px;
+  background-color: rgb(171, 191, 104);
+  max-width: 90vw;       /* prevent overflowing the viewport */
+
+  box-shadow: 2px 4px 8px gray;
+}
+
+
+
+.h_align {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}         /* never grow beyond parent */
+
+
+
+/* allow span text to wrap without enlarging the form horizontally */
+span {
+  display: block;           /* makes width constraints work predictably */
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 100%;         /* never grow beyond parent */
+  overflow-wrap: break-word;
+  font-weight: bold;
+  color: darkred;
+}
+
+button{
+  cursor: pointer;
+  background-color: rgb(215, 173, 117);
+  transition: background-color 0.3s;
+  padding: 3px;
+  border-radius: 6px;
+  border-radius: 5px;
+  margin-top: 12px;
+}
+
+button:hover{
+  background-color: rgb(201, 137, 52);
+  color: rgb(230, 237, 224);
+
+}
+
+
+input[type="text"], input[type="password"] {
+  padding: 8px;
+  border: 2px solid #546e54;
+  border-radius: 5px;
+  background-color: #cddbd4;
+  color: #23291a;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #517012;
+  background-color: rgb(252, 252, 252);
+  outline: none;
+}
+
+a {
+  display: inline-block;
+  text-align: right;
+  font-size: 15px;
+  color: #2f4f4f;
+  margin-top: 3px;
+}
+
+.a_tmp {
+  margin-top: 5px;
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+  color: #2f4f4f;
+}
+
+a::after{
+  color: #2f4f4f;
+}

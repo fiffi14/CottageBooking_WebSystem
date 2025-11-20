@@ -1,0 +1,47 @@
+<body class="back">
+
+<div class="form" id="forma">
+<h2>ADMIN PRIJAVA</h2>
+
+<div>
+<table>
+  <tr>
+    <td>KORISNIČKO IME:</td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" name="admin_in_log" [(ngModel)]="user">
+    </td>
+  </tr>
+  <br>
+  <tr>
+    <td>LOZINKA:</td>
+  </tr>
+  <tr>
+    <td>
+      <input type="password" name="admin_in_pass" [(ngModel)]="pass">
+    </td>
+  </tr>
+  <tr>
+
+    <td class="h_align">
+      <button (click)="login()">PRIJAVA</button>
+    </td>
+  </tr>
+
+  <span class="a_tmp">
+    <a routerLink="">Početna</a>
+  </span>
+</table>
+
+</div>
+
+<div class="h_align">
+  <span>{{msg}}</span>
+</div>
+
+</div>
+
+
+
+</body>

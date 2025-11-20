@@ -1,0 +1,178 @@
+<header>
+  <button (click)="home()">Početna</button>
+  <button (click)="login()">Prijavi se</button>
+</header>
+
+<body class="form">
+  <h3>REGISTRUJ SE ISPOD</h3>
+  <div>
+    <table>
+      <tr>
+        <td>KORISNIČKO IME:</td>
+      </tr>
+      <tr>
+        <td>
+          <input required type="text" name="reg_in_log" [(ngModel)]="korisnicko_ime">
+        </td>
+
+      </tr>
+      <span class="error">{{err_msg1}}</span>
+      <tr>
+        <td>LOZINKA:</td>
+      </tr>
+      <tr>
+
+          <div class="tooltip">
+            <td>
+            <input type="password" name="reg_in_pass" [(ngModel)]="lozinka" (ngModelChange)="pass_regex()">
+            <span class="tooltiptext">
+              Neophodno 6 do 10 karaktera:<br> -mora počinjati slovom,
+              <br>-barem jedno veliko slovo,<br>-tri mala slova,
+              <br>-jedan broj i <br>-jedan specijalan karakter.
+            </span>
+          </td>
+        </div>
+
+      </tr>
+
+      <span class="error">{{err_msg2}}</span>
+
+      <tr>
+        <td>JA SAM:</td>
+      </tr>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="reg_tip1" value="turista" [(ngModel)]="tip"> TURISTA
+          </label>
+          <label>
+            <input type="radio" name="reg_tip1" value="vlasnik" [(ngModel)]="tip"> VLASNIK
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>IME:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="reg_in_ime" [(ngModel)]="ime">
+        </td>
+      </tr>
+      <span class="error">{{err_msg3}}</span>
+
+      <tr>
+        <td>PREZIME:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="reg_in_prezime" [(ngModel)]="prezime">
+        </td>
+      </tr>
+      <span class="error">{{err_msg4}}</span>
+      <br>
+      <tr>
+        <td>POL:
+          <select [(ngModel)]="pol" name="reg_pol">
+            <option value="m">MUŠKI</option>
+            <option value="f">ŽENSKI</option>
+          </select>
+        </td>
+      </tr>
+      <br>
+      <!-- <tr>
+        <td>
+          <label>
+            <input type="radio" name="pol1" value="m" [(ngModel)]="pol"> MUŠKI
+          </label>
+          <label>
+            <input type="radio" name="pol1" value="f" [(ngModel)]="pol"> ŽENSKI
+          </label>
+        </td>
+      </tr> -->
+      <tr>
+        <td>ADRESA:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="reg_in_adresa" [(ngModel)]="adresa" placeholder="ADRESA, BROJ" (ngModelChange)="address_regex()">
+        </td>
+      </tr>
+      <span class="error">{{err_msg5}}</span>
+
+      <tr>
+        <td>KONTAKT TELEFON:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="reg_in_tel" [(ngModel)]="telefon" placeholder="+381/+49..." (ngModelChange)="phone_regex()">
+        </td>
+      </tr>
+      <span class="error">{{err_msg6}}</span>
+
+      <tr>
+        <td>E-MAIL ADRESA:</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="reg_in_email" placeholder="pera@gmail.com" [(ngModel)]="email" (ngModelChange)="email_regex()">
+        </td>
+      </tr>
+      <span class="error">{{err_msg7}}</span>
+      <br>
+      <tr>
+        <td>PROFILNA SLIKA:</td>
+      </tr>
+      <tr>
+        <td>
+
+          <div class="tooltip">
+            <input type="file" name="reg_profilna" (change)="upload($event)">
+            <span class="tooltiptext">
+              Dimenzije profilne slike se moraju<br>
+              naći između 100x100 px i 300x300 px.
+            </span>
+          </div>
+        </td>
+      </tr>
+      <span>{{err_img}}</span>
+      <tr>
+        <td>BROJ PLATNE KARTICE:</td>
+      </tr>
+      <tr>
+        <div class="tooltip">
+          <td>
+            <input type="text" name="reg_in_kartica" [(ngModel)]="broj_kartice" (ngModelChange)="card_check()">
+          </td>
+          <td>
+            @if(card_type!=0){
+              @if(visa){ <img src="assets/VISA-Logo-2006.png" width="45" height="25"> } @else{
+              @if(diners){ <img src="../../assets/diners.png" width="48" height="48" id="diners"> } @else{
+              @if(master){ <img src="../../assets/Mastercard-logo.png" width="44" height="37" id="master"> }}}
+            }
+
+            <span class="tooltiptext">
+                Može pošinjati sa:<br>
+                  Diners club (15 cifara): 300, 301, 302, 303, 36, 38<br>
+                  Master card (16 cifara): 51, 52, 53, 54, 55<br>
+                  Visa (16 cifara): 4539, 4556, 4916, 4532, 4929, 4485, 4716
+            </span>
+          </td>
+        </div>
+
+      </tr>
+      <span class="error">{{err_msg8}}</span>
+
+      <span class="error">{{err_user}}</span>
+      <tr>
+        <td colspan="2">
+          <button (click)="register()" class="h_align">POTVRDI</button><br>
+        </td>
+      </tr>
+
+
+    </table>
+
+    <!-- <span>{{err_img}}</span> -->
+  </div>
+
+</body>

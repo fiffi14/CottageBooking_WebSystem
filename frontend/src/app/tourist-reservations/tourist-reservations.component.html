@@ -1,0 +1,156 @@
+<header>
+  <app-tourist-menu></app-tourist-menu>
+</header>
+<body>
+<div>
+  <h3>Aktuelne rezervacije</h3>
+@if(currRsvp.length>0){
+  <div>
+    <table class="custom-table">
+      <tr>
+        <th>Vikendica</th>
+        <th>Mesto</th>
+        <th>Datum i vreme dolaska</th>
+        <th>Datum i vreme odlaska</th>
+        <th>Cena</th>
+        <th>Status</th>
+        <th>Otkaži</th>
+      </tr>
+      @for(c of currRsvp; track $index){
+        <tr>
+          <td>
+            {{c.cottName}}
+          </td>
+          <td>
+            {{c.cottPlace}}
+          </td>
+          <td>
+            {{formatDate(c.datum_od)}}
+          </td>
+          <td>
+            {{formatDate(c.datum_do)}}
+          </td>
+          <td>
+            {{c.cena}}
+          </td>
+          <td>
+            @if(c.status=="neobradjen"){?}
+            @else{
+              @if(c.status=="prihvacena"){Prihvaćena}
+              @else{Odbijena}
+            }
+          </td>
+          <td>
+            @if(!isWithinPast24Hours(c.datum_od)){<button (click)="cancel(c)">X</button>}
+            @else{-}
+          </td>
+        </tr>
+      }
+      <small>Moguće je otkazati 24h do početka rezervacije.</small>
+
+    </table>
+  </div>
+}@else{
+  <p>Trenutno ne postoji nijedna aktuelna niti predstojeća rezervacija.</p>
+}
+</div>
+<hr>
+<div>
+  <h3>Arhiva rezervacija</h3>
+@if(passedRsvp.length>0){
+  <div>
+    <table class="custom-table">
+      <tr>
+        <th>Vikendica</th>
+        <th>Mesto</th>
+        <th>Datum i vreme dolaska</th>
+        <th>Komentar</th>
+        <th>Ocena</th>
+        <th>Dodatno</th>
+
+      </tr>
+      @for(c of passedRsvp; track $index){
+        <tr>
+          <td>
+            {{c.cottName}}
+          </td>
+          <td>
+            {{c.cottPlace}}
+          </td>
+          <td>
+            {{formatDate(c.datum_od)}}
+          </td>
+          <td>
+            @if(c.komentar_turista!=""){{{c.komentar_turista}}}
+            @else{
+              @if(c.status=="odbijena"){
+                @if(c.komentar_vlasnik!=""){*{{c.komentar_vlasnik}}}
+                @else{* - }
+              }
+            }
+          </td>
+          <td>
+            @if(c.ocena!=0){{{c.ocena}}}
+            @else{/}
+          </td>
+          <td>
+            @if(c.komentar_turista=="" && c.ocena==0 && c.status!="odbijena" && hasResPassed(c)){
+              <button (click)="review(c)" [disabled]="reviewing">Recenzija</button>
+            }
+            @else{
+              @if(c.status=="odbijena"){
+                <div>Odbijena rezervacija</div>
+              }
+              @else{
+                <div>Već je ocenjeno. </div>
+              }
+            }
+          </td>
+          <!-- @if(c.status=="odbijena"){
+            <td>{{c.komentar_vlasnik}} Mora gga biti</td>
+          } -->
+
+
+
+        </tr>
+      }
+      <small>* Komentar vlasnika na odbijenu rezervaciju.</small>
+
+    </table>
+  </div>
+}@else{
+  <p>Trenutno ne postoji nijedna završena rezervacija.</p>
+}
+  <div [hidden]="!reviewing">
+    <div class="range-container">
+    <br>
+    <span>Ocena: {{ rating }}</span>
+    <input
+      type="range"
+      name="rating_review"
+      min="1"
+      max="5"
+      step="0.5"
+      [(ngModel)]="rating"
+      (ngModelChange)="updateSlider($event)"
+      class="slider">
+    </div>
+
+
+
+    <textarea maxlength="500" name="comment_review" cols="44" rows="4" placeholder="Unesi komentar" [(ngModel)]="comment"></textarea>
+    <span class="error">{{err}}</span>
+    <div class="button-container">
+
+      <button (click)="addCommentGrade()" class="">Potvrdi</button>
+      <button (click)="giveup()">Odustani</button>
+    </div>
+  </div>
+
+</div>
+</body>
+<footer>
+  <button (click)="passChange()">Izmeni lozinku</button>
+  <button (click)="logout()">Odjavi se</button>
+
+</footer>

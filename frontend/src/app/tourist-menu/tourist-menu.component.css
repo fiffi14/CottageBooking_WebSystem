@@ -1,0 +1,46 @@
+
+div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  /* background-color: #f0f8f0; */
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+div button {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border: none;
+  border-radius: 8px;
+  gap: 10px;
+  margin: 5px;
+  padding: 6px 36px;
+  white-space: nowrap;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 150px;
+  height: 30px;
+}
+
+div button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+div button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+div th, div tr{
+  border: none;
+}
+
+
+

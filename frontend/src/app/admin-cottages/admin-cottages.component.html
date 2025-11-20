@@ -1,0 +1,54 @@
+<header>
+  <app-admin-menu></app-admin-menu>
+</header>
+<body>
+  <br>
+  <h3>Prijavljene vikendice</h3>
+  <div>
+    @if(allCottages.length>0){
+      <table class="custom-table">
+      <tr>
+        <th>NAZIV</th>
+        <th>MESTO</th>
+        <th>BROJ OSOBA</th>
+        <th>KVADRATURA</th>
+      </tr>
+      @for(v of allCottages; track v.id){
+        <tr [class.bad-grades]="check_reviews(v)" [class.custom-table-cell]="!check_reviews(v)" [class.custom-aling]="check_reviews(v)">
+          <td>
+            {{v.naziv}}
+          </td>
+          <td>
+            {{v.mesto}}
+          </td>
+          <td>
+            {{v.broj_osoba}}
+          </td>
+          <td>
+            {{v.kvadratura}}
+          </td>
+
+          @if(check_reviews(v) && v.blokiranaDo==""){
+            <td>
+            <button (click)="block(v)">Blokada 48h</button>
+            </td>            <!-- {{v.blokiranaDo}} -->
+          }
+          @if(check_reviews(v) && v.blokiranaDo!=""){
+
+            <td>
+            <button (click)="unblock(v)">Deblokada</button>
+            </td>    <!-- {{v.blokiranaDo}} -->
+          }
+        </tr>
+      }
+      </table>
+    } @else{
+      <p>Trenutno ovakve nemamo vikendice u ponudi.</p>
+    }
+    </div>
+
+</body>
+
+<footer>
+  <button (click)="logout()">Odjavi se</button>
+</footer>
