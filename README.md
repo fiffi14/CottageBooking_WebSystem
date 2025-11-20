@@ -21,7 +21,7 @@
 - Then open the given link in the terminal:\
           http://localhost:4200 (e.g.)
 
-# BEFORE SEARCHING ANYTHING -> SETUP THE DATABASE
+# BEFORE TESTING ANYTHING -> SETUP THE DATABASE
 - Install MongoDB Compass if not already:
   https://www.mongodb.com/try/download/compass
 
